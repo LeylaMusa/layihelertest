@@ -1,0 +1,21 @@
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+
+@Test
+public void searchProduct(){
+
+      WebDriver driver = new ChromeDriver();
+      driver.get("https://automationexercise.com/test_cases");
+
+      HomePage homePage =new HomePage(driver);
+      homePage.clickProducts();
+
+      ProductsPage productsPage = new ProductsPage(driver);
+
+      Assert.assertTrue(productsPage.isAllProductsPageVisible());
+      productsPage.searchProduct("Dress");
+
+      Assert.assertTrue(productsPage.isSearchedProductsVisible());
+      Assert.assertTrue(productsPage.verifyProducts("Dress"));
+}
